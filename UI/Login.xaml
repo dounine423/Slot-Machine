@@ -1,0 +1,41 @@
+﻿<ui:UiWindow x:Class="RAFFLE.UI.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RAFFLE"
+        mc:Ignorable="d"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        WindowStartupLocation="CenterScreen"
+        Title="Slot Machine" Height="300" Width="600"
+		MaxHeight="300" MaxWidth="600"
+		MinHeight="300" MinWidth="600" ResizeMode="CanMinimize"
+		>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="12*" />
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="226*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="81*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Log In" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="70,20,0,0"/>
+        <StackPanel Grid.ColumnSpan="7" Margin="15,80,0,80" Grid.RowSpan="3">
+            <ui:TextBox Width="200" PlaceholderText="User Name" Name="txtUsername" Margin="5"/>
+            <ui:PasswordBox Width="200" PlaceholderText="Password" Name="txtPassword" KeyUp="txtPassword_KeyUp" Margin="5"/>
+        </StackPanel>
+        <WrapPanel Grid.Column="3" Grid.Row="2" Margin="95,10,20,10" Grid.ColumnSpan="3">
+            <ui:Button Appearance="Success" Name="btnLogin" Content=" Acess " Click="btnLogin_Click"/>
+            <ui:Button Appearance="Caution" Name="btnSetting" Content="Setting" Margin="40 0 0 0" Click="btnSetting_Click"/>
+        </WrapPanel>
+
+        <ui:Snackbar Title="Error" Grid.Row="1" MaxWidth="200" Appearance="Secondary" Icon="PuzzleCube24" Visibility="Visible" Message="Invalid PIN" Timeout="5000" x:Name="RootSnackBar" Margin="18,0,30,20" Grid.ColumnSpan="6" Grid.RowSpan="2" Grid.Column="1"/>
+    </Grid>
+</ui:UiWindow>

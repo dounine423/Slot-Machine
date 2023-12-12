@@ -1,0 +1,53 @@
+﻿<ui:UiWindow x:Class="RAFFLE.UI.UserBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RAFFLE"
+        mc:Ignorable="d"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        WindowStartupLocation="CenterScreen"
+        Title="Slot Machine" Height="600" Width="1200"
+        WindowState="Normal" Closing="UiWindow_Closing"
+		>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="422*" />
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="180*"/>
+            <ColumnDefinition Width="28*" />
+            <ColumnDefinition Width="54*"/>
+            <ColumnDefinition Width="452*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="130,50,50,50" Grid.ColumnSpan="3">
+            <TextBlock Text="Current Time: " Name="lblCurTime" FontSize="36" Margin="0 30 0 0" />
+            <WrapPanel>
+                <TextBlock Text="Price: " FontSize="36" Margin="0 45 0 0"/>
+                <ComboBox Margin="52 40 0 0" Name="txtPrice" HorizontalAlignment="Left"   
+                            VerticalAlignment="Top" Width="150" FontSize="36">
+                    <ComboBoxItem Content="1" IsSelected="True" Width="150"></ComboBoxItem>
+                    <ComboBoxItem Content="5" Width="150"></ComboBoxItem>
+                    <ComboBoxItem Content="10" Width="150"></ComboBoxItem>
+                    <ComboBoxItem Content="20" Width="150"></ComboBoxItem>
+                    <ComboBoxItem Content="50" Width="150"></ComboBoxItem>
+                    <ComboBoxItem Content="100" Width="150"></ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Rate: " FontSize="36" Margin="0 35 0 0"/>
+                <ui:TextBox Width="260" Name="txtRate" Margin="55 35 0 0" FontSize="36"/>
+            </WrapPanel>
+            <TextBlock Text="Location: " Name="lblLocation" FontSize="36" Margin="0 30 0 0" />
+            <TextBlock Text="Description: " Name="lblDescription" FontSize="36" Margin="0 30 0 0" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="4" Grid.RowSpan="3" Margin="20,90,50,50" Grid.ColumnSpan="3">
+            <Image Name="Img" Stretch="Fill" Height="400" Width="320"/>
+            <ui:TextBox PlaceholderText="" Name="txtImpluse" FontSize="36" Width="220" Margin="0 30 0 0" PreviewTextInput="txtImpluse_PreviewTextInput"/>
+        </StackPanel>
+    </Grid>
+</ui:UiWindow>
