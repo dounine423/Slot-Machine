@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media.Imaging;
 using Wpf.Ui.Controls;
 using RAFFLE.Schema;
 using RAFFLE.Manager;

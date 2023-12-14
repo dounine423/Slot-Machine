@@ -3,19 +3,10 @@ using System;
 using System.IO;
 using System.Windows;
 using Wpf.Ui.Controls;
-using System.Printing;
 using RAFFLE.Utils;
 using RAFFLE.Manager;
-using System.Globalization;
-using System.Xml.Linq;
 using System.Reflection;
 using System.Windows.Media.Imaging;
-using System.Security.Policy;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Drawing.Printing;
-using System.Drawing;
-using System.Windows.Media;
 
 namespace RAFFLE.UI
 {
@@ -26,7 +17,6 @@ namespace RAFFLE.UI
         public MainWindow()
         {
             InitializeComponent();
-
             string executablePath = Assembly.GetExecutingAssembly().Location;
             string curDir = Path.GetDirectoryName(executablePath);
             var uri = new Uri(curDir + "\\Invalid.png");

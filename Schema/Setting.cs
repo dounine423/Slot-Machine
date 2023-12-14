@@ -8,7 +8,9 @@ namespace RAFFLE.Schema
         public static string ImgPath { get; set; }
         public static string Location { get; set; }
         public static string Description { get; set; }
+        public static int Total { get; set; }
         public static int Profit { get; set; }
+        public static int Rate { get; set; }
         public static string CreatedAt { get; set; }
     }
 }

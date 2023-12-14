@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Input;
 using System.IO;
 using System.Windows.Media.Imaging;
 using Wpf.Ui.Controls;
@@ -9,9 +8,6 @@ using RAFFLE.Manager;
 using Microsoft.Win32;
 using RAFFLE.Utils;
 using System.Reflection;
-using System.Globalization;
-using System.Windows.Controls;
-using System.Xml.Linq;
 
 namespace RAFFLE.UI
 {
@@ -19,11 +15,16 @@ namespace RAFFLE.UI
     {
         private BitmapImage img;
         private string imgPath;
+        private string location;
+        private string description;
+        private int rate;
         public Setting()
         {
             InitializeComponent();
-
             imgPath = "";
+            location = "";
+            description = "";
+            rate = 0;
             string executablePath = Assembly.GetExecutingAssembly().Location;
             string curDir = Path.GetDirectoryName(executablePath);
             var uri = new Uri(curDir + "\\Invalid.png");
@@ -61,32 +62,35 @@ namespace RAFFLE.UI
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
-
-            if (imgPath == null || imgPath == "")
+            if ( imgPath == "")
             {
                 MsgHelper.ShowMessage(MsgType.Other, "Please select an Image.");
                 return;
             }
-            else if (txtLocation.Text == null || txtLocation.Text == "")
+            else if( rate < 2)
+            {
+                MsgHelper.ShowMessage(MsgType.Other, "Please set the rate as higher more than 2.");
+                return;
+            }
+            else if ( location == "")
             {
                 MsgHelper.ShowMessage(MsgType.Other, "Please enter a your Location.");
                 return;
             }
-            else if (txtDescription.Text == null || txtDescription.Text == "")
+            else if (description == "")
             {
                 MsgHelper.ShowMessage(MsgType.Other, "Please enter a Description.");
                 return;
             }
             else {
                 SettingSchema.ImgPath = imgPath;
-                SettingSchema.Location = txtLocation.Text;
-                SettingSchema.Description = txtDescription.Text;
+                SettingSchema.Location = location;
+                SettingSchema.Description = description;
+                SettingSchema.Rate = rate;
                 SettingSchema.Profit = 0;
+                SettingSchema.Total = 0;
                 SettingSchema.CreatedAt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-
                 DBMgr.InsertSetting();
-
                 Builder.RaiseEvent(EventRaiseType.SettingExit);
                 Builder.uiMainWindow.UpdateState();
             }   
@@ -101,6 +105,31 @@ namespace RAFFLE.UI
         {
             if (MsgHelper.ShowMessage(MsgType.AppExit, ""))
                 e.Cancel = true;
+        }
+
+        private void rate_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string rateStr = rateInput.Text;
+            try
+            {
+                int value = int.Parse(rateInput.Text);
+                rate = value;
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine(error.Message);
+                rateInput.Text = "";
+            }
+        }
+
+        private void description_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            description = descriptionInput.Text;
+        }
+
+        private void location_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            location = locationInput.Text;
         }
     }
 }

@@ -60,10 +60,6 @@ namespace RAFFLE.Manager
             {
                 pin = sqlite_reader.GetString(0);
             }
-            if (pin == "")
-            {
-                pin = null;
-            }
             return pin;
         }
 
@@ -78,6 +74,7 @@ namespace RAFFLE.Manager
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 MsgHelper.ShowMessage(MsgType.Other, "Faild update username and password");
             }
         }
@@ -104,7 +101,7 @@ namespace RAFFLE.Manager
         {
             SQLiteCommand cmd = new SQLiteCommand();
             cmd = sqliteConn.CreateCommand();
-            string query = String.Format("Insert into tbl_setting (imgPath, location, description, profit, createdAt) values ('{0}', '{1}', '{2}', {3}, '{4}');", SettingSchema.ImgPath, SettingSchema.Location, SettingSchema.Description, SettingSchema.Profit, SettingSchema.CreatedAt);
+            string query = String.Format("Insert into tbl_setting (imgPath, location, description, rate, total, profit, createdAt) values ('{0}', '{1}', '{2}', {3}, {4}, {5},'{6}');", SettingSchema.ImgPath, SettingSchema.Location, SettingSchema.Description, SettingSchema.Rate, SettingSchema.Total, SettingSchema.Profit, SettingSchema.CreatedAt);
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();
         }

@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Media.Imaging;
 using Wpf.Ui.Controls;
 using RAFFLE.Utils;
 using RAFFLE.Manager;
@@ -24,8 +23,6 @@ namespace RAFFLE.UI
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            // validate input value
-            // get user name
             string username = txtUsername.Text;
             int bUsername = DBMgr.validateUsername(username);
             if (bUsername < 0)
